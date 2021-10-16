@@ -132,6 +132,8 @@ class TreeNode extends PureComponent {
           showPartiallySelected={showPartiallySelected}
           readOnly={readOnly}
           clientId={clientId}
+          isLeaf(_children)
+          onNodeToggle={onNodeToggle}
         />
         <Actions actions={actions} onAction={onAction} id={_id} readOnly={readOnly} />
       </li>
