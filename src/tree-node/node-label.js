@@ -19,6 +19,8 @@ class NodeLabel extends PureComponent {
     onCheckboxChange: PropTypes.func,
     readOnly: PropTypes.bool,
     clientId: PropTypes.string,
+    onNodeToggle: PropTypes.func,
+    isLeaf: PropTypes.bool,
   }
 
   handleCheckboxChange = e => {
@@ -37,7 +39,7 @@ class NodeLabel extends PureComponent {
   }
 
   render() {
-    const { mode, title, label, id, partial, checked } = this.props
+    const { mode, title, label, id, partial, checked, isLeaf, onNodeToggle } = this.props
     const { value, disabled, showPartiallySelected, readOnly, clientId } = this.props
     const nodeLabelProps = { className: 'node-label' }
 
@@ -47,6 +49,10 @@ class NodeLabel extends PureComponent {
 
     if (shouldRegisterClickHandler) {
       nodeLabelProps.onClick = this.handleCheckboxChange
+    }
+    
+    if (isLeaf) {
+      nodeLabelProps.onClick = onNodeToggle
     }
 
     const sharedProps = { id, value, checked, disabled, readOnly, tabIndex: -1 }
